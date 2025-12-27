@@ -44,8 +44,11 @@ public class Employee {
 	    @Column(nullable=false)
 	    private LocalDate joinDate;
 
+	    @Builder.Default
+	    @Column(name="status")
 	    private String status = "ACTIVE";
 
+	    @Builder.Default
 	    @Column(name="created_at")
 	    private LocalDateTime createdAt = LocalDateTime.now();
 }

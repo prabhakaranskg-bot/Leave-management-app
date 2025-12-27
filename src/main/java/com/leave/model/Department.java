@@ -27,6 +27,7 @@ public class Department {
     @Column(nullable = false, unique = true)
     private String deptName;
 
+    @Builder.Default
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 }

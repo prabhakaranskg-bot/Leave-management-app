@@ -41,15 +41,21 @@ public class LeaveRequest {
     @Column(nullable=false)
     private LocalDate endDate;
 
+    @Column(name="reason")
     private String reason;
 
+    @Builder.Default
+    @Column(name="status")
     private String status = "PENDING";
 
+    @Builder.Default
+    @Column(name="applied_on")
     private LocalDateTime appliedOn = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name="approved_by")
     private Employee approvedBy;
 
+    @Column(name="approved_on")
     private LocalDateTime approvedOn;
 }

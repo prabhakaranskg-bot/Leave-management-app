@@ -31,5 +31,6 @@ public class LeaveType {
     @Column(nullable=false)
     private Integer annualAllocation;
 
+    @Builder.Default
     private Boolean carryForward = false;
 }

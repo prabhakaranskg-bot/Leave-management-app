@@ -3,6 +3,7 @@ package com.leave.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import com.leave.model.Employee;
@@ -12,7 +13,11 @@ public class EmployeeService {
 	@Autowired
     private EmployeeRepository employeeRepository;
 
+	 @Autowired
+	 private JdbcTemplate jdbcTemplate;
+	 
     public Employee saveEmployee(Employee employee) {
+    	
         return employeeRepository.save(employee);
     }
 
@@ -30,5 +35,17 @@ public class EmployeeService {
 
     public void deleteEmployee(Integer id) {
         employeeRepository.deleteById(id);
+        resetSequenceIfEmpty();
+    }
+    
+    
+    /**
+     * Resets AUTO_INCREMENT to 1 if table is empty
+     */
+    private void resetSequenceIfEmpty() {
+        Long count = employeeRepository.count();
+        if (count == 0) {
+            jdbcTemplate.execute("ALTER TABLE employee AUTO_INCREMENT = 1");
+        }
     }
 }

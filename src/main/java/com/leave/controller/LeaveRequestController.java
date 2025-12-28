@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.leave.dto.LeaveRequestDTO;
 import com.leave.model.LeaveRequest;
 import com.leave.service.LeaveRequestService;
 
@@ -23,8 +24,8 @@ public class LeaveRequestController {
     private LeaveRequestService leaveRequestService;
 
     @PostMapping
-    public LeaveRequest applyLeave(@RequestBody LeaveRequest leaveRequest) {
-        return leaveRequestService.applyLeave(leaveRequest);
+    public LeaveRequest applyLeave(@RequestBody LeaveRequestDTO leaveRequestDTO) {
+        return leaveRequestService.applyLeave(leaveRequestDTO);
     }
 
     @GetMapping

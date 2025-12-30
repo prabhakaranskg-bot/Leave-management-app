@@ -20,17 +20,19 @@ import lombok.NoArgsConstructor;
 public class LeaveType {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "leave_type_id",nullable=false)
     private Integer leaveTypeId;
 
-    @Column(nullable=false, unique=true)
+    @Column(name = "leave_code",nullable=false, unique=true)
     private String leaveCode;
 
-    @Column(nullable=false)
+    @Column(name = "leave_name",nullable=false)
     private String leaveName;
 
-    @Column(nullable=false)
+    @Column(name = "annual_allocation",nullable=false)
     private Integer annualAllocation;
 
     @Builder.Default
+    @Column(name = "carry_forward",nullable=false)
     private Boolean carryForward = false;
 }

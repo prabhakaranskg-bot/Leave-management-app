@@ -53,7 +53,8 @@ public class LeaveRequestService {
 	        LeaveRequest req = leaveRequestRepository.findById(leaveId).orElse(null);
 
 	        if (req == null) return null;
-	        Employee approver = employeeRepository.findById(approverId).orElse(null);
+	        Employee approver = employeeRepository.findById(approverId)
+	        		.orElseThrow(() -> new RuntimeException("Employee not found"));
 	        req.setStatus("APPROVED");
 	        req.setApprovedBy(approver);
 	        req.setApprovedOn(LocalDateTime.now());

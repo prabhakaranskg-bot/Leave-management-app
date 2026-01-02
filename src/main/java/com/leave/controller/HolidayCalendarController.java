@@ -3,6 +3,7 @@ package com.leave.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,27 +19,31 @@ import com.leave.service.HolidayCalendarService;
 
 @RestController
 @RequestMapping("/api/holidays")
-@CrossOrigin(origins = "http://localhost:4200")
 public class HolidayCalendarController {
 	@Autowired
-    private HolidayCalendarService holidayService;
+	private HolidayCalendarService holidayService;
 
-    @PostMapping
-    public HolidayCalendar addHoliday(@RequestBody HolidayCalendar holiday) {
-        return holidayService.saveHoliday(holiday);
-    }
+	@PostMapping
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public HolidayCalendar addHoliday(@RequestBody HolidayCalendar holiday) {
+		return holidayService.saveHoliday(holiday);
+	}
 
-    @GetMapping
-    public List<HolidayCalendar> getAllHolidays() {
-        return holidayService.getAllHolidays();
-    }
+	@GetMapping
+	@PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+	public List<HolidayCalendar> getAllHolidays() {
+		return holidayService.getAllHolidays();
+	}
 
-    @PutMapping("/{id}")
-    public HolidayCalendar updateHoliday(@PathVariable Integer id, @RequestBody HolidayCalendar holiday) {
-        return holidayService.updateHoliday(id, holiday);
-    }
-    @DeleteMapping("/{id}")
-    public void deleteHoliday(@PathVariable Integer id) {
-        holidayService.deleteHoliday(id);
-    }
+	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public HolidayCalendar updateHoliday(@PathVariable Integer id, @RequestBody HolidayCalendar holiday) {
+		return holidayService.updateHoliday(id, holiday);
+	}
+
+	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ADMIN')")
+	public void deleteHoliday(@PathVariable Integer id) {
+		holidayService.deleteHoliday(id);
+	}
 }

@@ -26,6 +26,7 @@ public class LeaveTypeController {
     @PostMapping
     @PreAuthorize("hasAuthority('ADMIN')")
     public LeaveType createLeaveType(@RequestBody LeaveType leaveType) {
+    	leaveType.setLeaveTypeId(null);
         return leaveTypeService.saveLeaveType(leaveType);
     }
 

@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copy JAR file
-COPY target/Leave-Management-App-0.0.1-SNAPSHOT.jar app.jar
+COPY target/com.leave-0.0.1-SNAPSHOT-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose port 8080
 EXPOSE 8080

@@ -18,7 +18,7 @@ import com.leave.service.UserService;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController {
 	@Autowired
     private UserService service;

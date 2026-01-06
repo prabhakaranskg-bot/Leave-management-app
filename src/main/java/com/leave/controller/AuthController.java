@@ -20,7 +20,7 @@ import com.leave.model.User;
 
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthController {
 	@Autowired
 	public AuthenticationManager authenticationManager;

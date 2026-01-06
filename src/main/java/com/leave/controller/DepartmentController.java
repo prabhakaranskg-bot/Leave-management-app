@@ -15,7 +15,7 @@ import com.leave.service.DepartmentService;
 
 
 @RestController
-@RequestMapping("/departments")
+@RequestMapping("/api/departments")
 public class DepartmentController {
 	private final DepartmentService service;
     public DepartmentController(DepartmentService service){ this.service = service; }

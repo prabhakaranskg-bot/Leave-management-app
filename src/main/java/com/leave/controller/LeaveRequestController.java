@@ -18,7 +18,7 @@ import com.leave.model.LeaveRequest;
 import com.leave.service.LeaveRequestService;
 
 @RestController
-@RequestMapping("/api/leave-requests")
+@RequestMapping("/leave-requests")
 public class LeaveRequestController {
 	@Autowired
     private LeaveRequestService leaveRequestService;

@@ -18,7 +18,7 @@ import com.leave.model.HolidayCalendar;
 import com.leave.service.HolidayCalendarService;
 
 @RestController
-@RequestMapping("/api/holidays")
+@RequestMapping("/holidays")
 public class HolidayCalendarController {
 	@Autowired
 	private HolidayCalendarService holidayService;

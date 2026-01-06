@@ -18,7 +18,7 @@ import com.leave.model.Employee;
 import com.leave.service.EmployeeService;
 
 @RestController
-@RequestMapping("/api/employees")
+@RequestMapping("/employees")
 public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;

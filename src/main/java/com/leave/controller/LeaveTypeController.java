@@ -24,33 +24,33 @@ public class LeaveTypeController {
     private LeaveTypeService leaveTypeService;
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public LeaveType createLeaveType(@RequestBody LeaveType leaveType) {
     	leaveType.setLeaveTypeId(null);
         return leaveTypeService.saveLeaveType(leaveType);
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
     public List<LeaveType> getAllLeaveTypes() {
         return leaveTypeService.getAllLeaveTypes();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
     public LeaveType getLeaveType(@PathVariable Integer id) {
         return leaveTypeService.getLeaveTypeById(id);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public LeaveType updateLeaveType(@PathVariable Integer id, @RequestBody LeaveType leaveType) {
         leaveType.setLeaveTypeId(id);
         return leaveTypeService.saveLeaveType(leaveType);
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteLeaveType(@PathVariable Integer id) {
         leaveTypeService.deleteLeaveType(id);
     }

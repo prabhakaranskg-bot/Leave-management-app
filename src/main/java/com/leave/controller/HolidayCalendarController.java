@@ -24,19 +24,19 @@ public class HolidayCalendarController {
 	private HolidayCalendarService holidayService;
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public HolidayCalendar addHoliday(@RequestBody HolidayCalendar holiday) {
 		return holidayService.saveHoliday(holiday);
 	}
 
 	@GetMapping
-	@PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+	@PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
 	public List<HolidayCalendar> getAllHolidays() {
 		return holidayService.getAllHolidays();
 	}
 
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public HolidayCalendar updateHoliday(@PathVariable Integer id, @RequestBody HolidayCalendar holiday) {
 		return holidayService.updateHoliday(id, holiday);
 	}

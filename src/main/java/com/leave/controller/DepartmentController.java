@@ -21,12 +21,12 @@ public class DepartmentController {
     public DepartmentController(DepartmentService service){ this.service = service; }
 
     @PostMapping 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Department create(@RequestBody Department d){ 
     	return service.save(d); 
     	}
     @GetMapping 
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
     public List<Department> all(){ 
     	return service.getAll(); 
     	}

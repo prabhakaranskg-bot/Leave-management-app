@@ -30,25 +30,25 @@ public class EmployeeController {
 	}
 
 	@GetMapping
-	@PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+	@PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
 	public List<Employee> getAllEmployees() {
 		return employeeService.getAllEmployees();
 	}
 
 	@GetMapping("/{id}")
-	@PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+	@PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
 	public Employee getById(@PathVariable Integer id) {
 		return employeeService.getEmployeeById(id);
 	}
 
 	@GetMapping("/department/{deptId}")
-	@PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+	@PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
 	public List<Employee> getByDept(@PathVariable Integer deptId) {
 		return employeeService.getEmployeesByDepartment(deptId);
 	}
 
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee employee) {
 		employee.setEmpId(id);
 		return employeeService.saveEmployee(employee);

@@ -24,37 +24,37 @@ public class LeaveRequestController {
     private LeaveRequestService leaveRequestService;
 
     @PostMapping
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
     public LeaveRequest applyLeave(@RequestBody LeaveRequestDTO leaveRequestDTO) {
         return leaveRequestService.applyLeave(leaveRequestDTO);
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('MANAGER')")
+    @PreAuthorize("hasRole('MANAGER')")
     public List<LeaveRequest> getAllRequests() {
         return leaveRequestService.getAllRequests();
     }
 
     @GetMapping("/employee/{empId}")
-    @PreAuthorize("hasAuthority('MANAGER')")
+    @PreAuthorize("hasRole('MANAGER')")
     public List<LeaveRequest> getByEmployee(@PathVariable Integer empId) {
         return leaveRequestService.getLeavesByEmployee(empId);
     }
 
     @PutMapping("/{leaveId}/approve/{approverId}")
-    @PreAuthorize("hasAuthority('MANAGER')")
+    @PreAuthorize("hasRole('MANAGER')")
     public LeaveRequest approveLeave(@PathVariable Integer leaveId, @PathVariable Integer approverId) {
         return leaveRequestService.approveLeave(leaveId, approverId);
     }
 
     @PutMapping("/{leaveId}/reject/{approverId}")
-    @PreAuthorize("hasAuthority('MANAGER')")
+    @PreAuthorize("hasRole('MANAGER')")
     public LeaveRequest rejectLeave(@PathVariable Integer leaveId, @PathVariable Integer approverId) {
         return leaveRequestService.rejectLeave(leaveId, approverId);
     }
 
     @GetMapping("/status/{status}")
-    @PreAuthorize("hasAnyAuthority('ADMIN','MANAGER','EMPLOYEE')")
+    @PreAuthorize("hasAnyRole('ADMIN','MANAGER','EMPLOYEE')")
     public List<LeaveRequest> getByStatus(@PathVariable String status) {
         return leaveRequestService.getByStatus(status);
     }

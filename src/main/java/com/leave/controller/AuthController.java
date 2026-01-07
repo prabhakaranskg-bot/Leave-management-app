@@ -35,8 +35,9 @@ public class AuthController {
 		List<String> roles = auth.getAuthorities()
 				.stream()
 				.map(GrantedAuthority::getAuthority)
-				 .map(role -> role.replace("ROLE_", ""))
+				.map(role -> "ROLE_" + role.replace("ROLE_", ""))
 				.toList();	
+		System.out.println(roles);
 		return new AuthResponse(jwtUtil.genrateToken(authRequest.username, roles));
 		
 }
